@@ -185,6 +185,15 @@ String.fromCharCode(0xe000)
 ⚠️ 定义使用的字体，很重要啦！！
 
 ```css
+@font-face {
+  font-family: "iconfont";
+  src: url("iconfont.eot"); /* IE9*/
+  src: url("iconfont.eot#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("iconfont.woff") format("woff"), /* chrome, firefox */
+       url("iconfont.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+       url("iconfont.svg#iconfont") format("svg"); /* iOS 4.1- */
+}
+
 .icon {
   font-family:"iconfont" !important;
 }
@@ -197,6 +206,15 @@ String.fromCharCode(0xe000)
 ```
 
 ```css
+@font-face {
+  font-family: "iconfont";
+  src: url("iconfont.eot"); /* IE9*/
+  src: url("iconfont.eot#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("iconfont.woff") format("woff"), /* chrome, firefox */
+       url("iconfont.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+       url("iconfont.svg#iconfont") format("svg"); /* iOS 4.1- */
+}
+
 .icon {
   font-family:"iconfont" !important;
 }
