@@ -160,6 +160,68 @@
 
 ----
 
+## Unicode 编码区域
+
+我们知道字体的 `Unicode` 是一个编码形式，那么这个编码是怎么生成的呢？  
+需要知道，计算机里面每个字符都有一个unicode编码，通常会用 `u+` 然后紧接着一组十六进制的数字来表示这一个字符，例如 `U+4AE0`，unicode字符集里面，`E000 至 F8FF` 属于用户造字区，原本是空的，用户可以在字体文件里面随便定义这些字符的形状，如 `字体Unicode`。
+
+## 如何使用SVG生成字体
+
+首先我们知道的是，字体的常用使用方式有以上的三种，而前两种都需要生成 `unicode`，而编码是从 `0xe000`开始的，
+- ① 因此我们字体编码就可以从 `0xe000`累加，即 `0xe000++`
+- ② 然后获取字符编码 `String.fromCharCode(0xe000)`
+```js
+String.fromCharCode(0xe000)
+""
+```
+- ③ 获取编码后，就可以生成对应的Unicode字体了
+
+### unicode 方式使用
+
+```js
+<i class="icon"></i> 
+```
+
+⚠️ 定义使用的字体，很重要啦！！
+
+```css
+.icon {
+  font-family:"iconfont" !important;
+}
+```
+
+### font-class 使用方式
+
+```js
+<i class="icon icon-adobe"></i>
+```
+
+```css
+.icon {
+  font-family:"iconfont" !important;
+}
+.icon-adobe:before { content: "\e000"; }
+```
+
+- ④ 有了这些编码，就可以生成字体文件了
+
+生成字体文件我们需要几个字体转换工具
+
+```js
+`svgicons2svgfont` -> `svg2ttf` -> `ttf2eot`  
+                                -> `ttf2woff`  
+                                -> `ttf2woff2`  
+```
+
+通过这几个工具我们就能轻松的将 `svg` 图转换为不同格式的字体文件
+
+字体转换工具：[svgtofont](https://github.com/jaywcjlove/svgtofont) 👍
+
 ## 参考
 
 - [手摸手，带你优雅的使用 icon](https://juejin.im/post/59bb864b5188257e7a427c09)
+- [css中icon font 的每一个icon的编码是怎么来的](https://zhidao.baidu.com/question/204596322270131765.html)
+- [怎么查某个汉字对应的 Unicode码？](https://zhidao.baidu.com/question/133757489.html)
+- [Private Use Areas](https://en.wikipedia.org/wiki/Private_Use_Areas)
+- [svgtofont](https://github.com/jaywcjlove/svgtofont)
+
